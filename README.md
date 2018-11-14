@@ -49,6 +49,8 @@ gradle -Dcucumber.options=src/test/resources/com/vailsys/persephony/api/call/Cal
 gradle -Dcucumber.options="--tags @Calls" test
 ```
 
+You can generate a Cobertura coverage report by running `gradle cobertura`. The report will be found at build/cobertura.
+
 ## Documentation
 
 The [Persephony documentation](https://www.persephony.com/docs) has guides on [getting started](https://www.persephony.com/docs/getting-started/) with Persephony, as well as the [API reference](https://www.persephony.com/docs/api/), [PerCL reference](https://www.persephony.com/docs/percl/), and several useful [tutorials.](https://www.persephony.com/docs/tutorials/).

@@ -15,6 +15,9 @@ public class Helper {
     @Before("@Mockserver")
     public static void setupMockAPIServer() {
         overrideLogLevel("WARN");
+        if(mockServer != null) {
+            mockServer.stop();
+        }
         mockServer = startClientAndServer(SERVERPORT);
     }
 
