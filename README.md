@@ -1,9 +1,9 @@
 ## Introduction
 The Persephony Java SDK will allow you to easily use the Persephony API in a Java application.
 
-### Build
-- Clone this repo, install [gradle](https://gradle.org/), then run `gradle build`. The `jar` will be created in the `build` directory.
-- Add the file as a dependency of your project.
+### SDK Installation
+
+To include the SDK in your build, follow the instructions on [Jitpack](https://jitpack.io/#PersephonyAPI/java-sdk)
 
 ## Testing your Installation
 
