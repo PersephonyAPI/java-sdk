@@ -1,6 +1,8 @@
 ## Introduction
 The Persephony Java SDK will allow you to easily use the Persephony API in a Java application.
 
+[![Release](https://jitpack.io/v/PersephonyAPI/java-sdk.svg)](https://jitpack.io/#PersephonyAPI/java-sdk)
+
 ### SDK Installation
 
 To include the SDK in your build, follow the instructions on [Jitpack](https://jitpack.io/#PersephonyAPI/java-sdk)
