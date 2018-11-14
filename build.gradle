@@ -1,0 +1,49 @@
+version = "0.0.0-rc.1"
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+		sourceCompatibility = "1.7"
+		targetCompatibility = "1.7"
+    }
+}
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'Persephony Java SDK', 'Implementation-Version': version
+	}
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+	mavenCentral();
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+	testCompile "org.mockito:mockito-core:2.6.8"
+	testCompile 'org.mock-server:mockserver-netty:3.10.4'
+	testCompile 'info.cukes:cucumber-java:1.2.4'
+	testCompile 'info.cukes:cucumber-junit:1.2.4'
+	testCompile 'junit:junit:4.12'
+
+	// The production code uses the SLF4J logging API at compile time
+	compile 'org.slf4j:slf4j-api:1.7.21'
+	compile 'com.google.code.gson:gson:2.6.2'
+}
+
+test {
+	testLogging.showStandardStreams = true
+	systemProperties System.getProperties()
+}
+
+uploadArchives {
+	repositories {
+		flatDir {
+			dirs 'repos'
+		}
+	}
+}

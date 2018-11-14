@@ -1,0 +1,24 @@
+@Mockserver
+Feature: ParticipantsRequester
+
+  Scenario: Can create a ParticipantsRequester
+    Given a ParticipantsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890 and using the conferencePath /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890
+    Then check the ParticipantsRequester acting accountId is AC1234567890123456789012345678901234567890
+    Then check the ParticipantsRequester path is /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890/Participants
+
+  Scenario: Getting a list of participants
+    Given a ParticipantsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890 and using the conferencePath /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890
+    Then get a list of participants
+    Then get a list of participants with filters
+
+  Scenario: Get a single participant by participantId
+    Given a ParticipantsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890 and using the conferencePath /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890
+    Then get a Participant by its participantId
+
+  Scenario: Update a participant
+    Given a ParticipantsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890 and using the conferencePath /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890
+    Then update a participant
+
+  Scenario: Remove a participant
+    Given a ParticipantsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890 and using the conferencePath /Accounts/AC1234567890123456789012345678901234567890/Conferences/CF1234567890123456789012345678901234567890
+    Then remove a participant
