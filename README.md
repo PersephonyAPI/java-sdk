@@ -2,6 +2,10 @@
 The Persephony Java SDK will allow you to easily use the Persephony API in a Java application.
 
 [![Release](https://jitpack.io/v/PersephonyAPI/java-sdk.svg)](https://jitpack.io/#PersephonyAPI/java-sdk)
+[![Build Status](https://travis-ci.com/PersephonyAPI/java-sdk.svg?branch=master)](https://travis-ci.com/PersephonyAPI/java-sdk)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5db37830ae23321e9150/maintainability)](https://codeclimate.com/github/PersephonyAPI/java-sdk/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5db37830ae23321e9150/test_coverage)](https://codeclimate.com/github/PersephonyAPI/java-sdk/test_coverage)
+[Docs](https://jitpack.io/com/github/persephonyapi/java-sdk/0.0.0/javadoc/)
 
 ### SDK Installation
 
@@ -48,6 +52,8 @@ gradle -Dcucumber.options=src/test/resources/com/vailsys/persephony/api/call/Cal
 ```bash
 gradle -Dcucumber.options="--tags @Calls" test
 ```
+
+You can generate a Cobertura coverage report by running `gradle cobertura`. The report will be found at build/cobertura.
 
 ## Documentation
 
