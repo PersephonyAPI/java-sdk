@@ -39,6 +39,10 @@ test {
 	systemProperties System.getProperties()
 }
 
+cobertura {
+	coverageFormats = ["html", "xml"]
+}
+
 artifacts {
 	archives sourcesJar
 	archives javadocJar
