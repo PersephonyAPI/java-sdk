@@ -76,48 +76,11 @@ public class CallsRequesterTest {
 		assertTrue(this.callsR.create(from, to, applicationId, options).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
 	}
 
-	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using callConnectUrl$")
-	public void placeCallConnectUrlCall(String from, String to) throws Throwable {
-		String callConnectUrl = "http://vailsys.com/callConnect";
-		CreateCallRequest query = new CreateCallRequest(from, to, callConnectUrl, (String)null, null);
-
-		Helper.getMockServer().when(
-			request().withMethod("POST").withPath(this.callsR.getPath()).withBody(query.toJson())
-		).respond(
-			response().withStatusCode(200).withBody(CallsRequesterTest.aTestCall)
-		);
-
-		assertTrue(this.callsR.create(from, to, callConnectUrl, (String)null).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
-	}
-
-	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using callConnectUrl with options$")
-	public void placeCallConnectUrlCallWithOptions(String from, String to) throws Throwable {
-		Integer timeout = 55;
-		String callConnectUrl = "http://vailsys.com/callConnect";
-
+	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using application (AP[0-9A-Fa-f]{40}) with requestId (.*)$")
+	public void placeApplicationCallWithRequestId(String from, String to, String applicationId, String requestId) throws Throwable {
 		CallOptions options = new CallOptions();
-		options.setTimeout(timeout);
-
-		CreateCallRequest query = new CreateCallRequest(to, from, callConnectUrl, (String)null, options);
-
-		Helper.getMockServer().when(
-			request().withMethod("POST").withPath(this.callsR.getPath()).withBody(query.toJson())
-		).respond(
-			response().withStatusCode(200).withBody(CallsRequesterTest.aTestCall)
-		);
-
-		assertTrue(this.callsR.create(to, from, callConnectUrl, (String)null, options).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
-	}
-
-	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using callConnectUrl with requestId (.*)")
-	public void placeCallConnectUrlCallWithRequestId(String from, String to, String requestId) throws Throwable {
-		String callConnectUrl = "http://vailsys.com/callConnect";
-
-		CallOptions options = new CallOptions();
-		options.setTimeout(10);
 		options.setRequestId(requestId);
-
-		CreateCallRequest query = new CreateCallRequest(to, from, callConnectUrl, (String)null, options);
+		CreateCallRequest query = new CreateCallRequest(to, from, applicationId, options);
 
 
 		Helper.getMockServer().when(
@@ -126,49 +89,13 @@ public class CallsRequesterTest {
 				response().withStatusCode(200).withBody(CallsRequesterTest.aTestCall)
 		);
 
-		this.callsR.create(to, from, callConnectUrl, (String)null, options);
+		assertTrue(this.callsR.create(to, from, applicationId, options).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
 
 		Helper.getMockServer().verify(
-				request().withMethod("POST").withPath(this.callsR.getPath()).withBody(new JsonBody("{from:'" + from + "',to:'" + to + "', callConnectUrl:'" + callConnectUrl + "',timeout:10,requestId:'" +requestId + "'}")),
+				request().withMethod("POST").withPath(this.callsR.getPath()).withBody(new JsonBody("{from:'" + from + "',to:'" + to + "', applicationId:'" + applicationId + "',requestId:'" +requestId + "'}")),
 				VerificationTimes.exactly(1)
 		);
 	}
-
-	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using callConnectUrl and statusCallbackUrl$")
-	public void placeCallConnectUrlCallWithStatusCallbackUrl(String from, String to) throws Throwable {
-		String callConnectUrl = "http://vailsys.com/call";
-		String statusCallbackUrl = "http://vailsys.com/status";
-		CreateCallRequest query = new CreateCallRequest(from, to, callConnectUrl, statusCallbackUrl, null);
-
-		Helper.getMockServer().when(
-			request().withMethod("POST").withPath(this.callsR.getPath()).withBody(query.toJson())
-		).respond(
-			response().withStatusCode(200).withBody(CallsRequesterTest.aTestCall)
-		);
-
-		assertTrue(this.callsR.create(from, to, callConnectUrl, statusCallbackUrl).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
-	}
-
-	@Then("^place a call from (\\+?[1-9]\\d{1,14}) to (\\+?[1-9]\\d{1,14}) using callConnectUrl and statusCallbackUrl with options$")
-	public void placeCallConnectUrlCallAndStatusCallbackUrlWithOptions(String from, String to) throws Throwable {
-		Integer timeout = 55;
-		String callConnectUrl = "http://vailsys.com/call";
-		String statusCallbackUrl = "http://vailsys.com/status";
-
-		CallOptions options = new CallOptions();
-		options.setTimeout(timeout);
-
-		CreateCallRequest query = new CreateCallRequest(from, to, callConnectUrl, statusCallbackUrl, options);
-
-		Helper.getMockServer().when(
-			request().withMethod("POST").withPath(this.callsR.getPath()).withBody(query.toJson())
-		).respond(
-			response().withStatusCode(200).withBody(CallsRequesterTest.aTestCall)
-		);
-
-		assertTrue(this.callsR.create(from, to, callConnectUrl, statusCallbackUrl, options).equals(Call.fromJson(CallsRequesterTest.aTestCall)));
-	}
-
 	
 	@Then("^get a list of calls$")
 	public void getCallsList() throws Throwable {

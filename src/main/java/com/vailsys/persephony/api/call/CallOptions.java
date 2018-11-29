@@ -7,7 +7,6 @@ import com.vailsys.persephony.api.CommonFields;
  * creating a Call.
  *
  * @see com.vailsys.persephony.api.call.CallsRequester#create(String,String,String,CallOptions)
- * @see com.vailsys.persephony.api.call.CallsRequester#create(String,String,String,String,CallOptions)
  */
 public class CallOptions extends CommonFields {
 	/**

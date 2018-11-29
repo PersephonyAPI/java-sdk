@@ -130,69 +130,6 @@ public class CallsRequester extends APIAccountRequester {
 	}
 
 	/**
-	 * Create a new call through the Persephony API using an unregistered
-	 * Persephony-compatible application. This function wraps an HTTP POST
-	 * request to the Persephony API's /Account/$accountId/Calls endpoint. This
-	 * places a new call from the {@code actingAccountId} to the number
-	 * provided from the number provided.
-	 *
-	 * @param to The number to call out to (DNIS). This can be any valid phone
-	 * number formatted in E.164 format.
-	 * @param from The number to call from (ANI). This must be a number
-	 * purchase from Persephony or a verified phone number owned by the user.
-	 * @param callConnectUrl Like with a registered Persephony application,
-	 * this is the URL that Persephony makes requests to when the call
-	 * connects. See the {@code callConnectUrl} in the Persephony Application
-	 * documentation.
-	 * @param statusCallbackUrl The URL to which Persephony will report call
-	 * status notifications. See the {@code statusCallbackUrl} in the
-	 * Persephony Application documentation.
-	 *
-	 * @return The {@link com.vailsys.persephony.api.call.Call} object returned by
-	 * Persephony that represents the call that was created.
-	 * @throws PersyException when the request fails or the JSON is invalid.
-	 */
-	public Call create(String to, String from, String callConnectUrl, String statusCallbackUrl) throws PersyException {
-		return this.create(to, from, callConnectUrl, statusCallbackUrl, null);
-	}
-
-	/**
-	 * Create a new call through the Persephony API using an unregistered
-	 * Persephony-compatible application. This function wraps an HTTP POST
-	 * request to the Persephony API's /Account/$accountId/Calls endpoint. This
-	 * places a new call from the {@code actingAccountId} to the number
-	 * provided from the number provided.
-	 *
-	 * @param to The number to call out to (DNIS). This can be any valid phone
-	 * number formatted in E.164 format.
-	 * @param from The number to call from (ANI). This must be a number
-	 * purchase from Persephony or a verified phone number owned by the user.
-	 * @param callConnectUrl Like with a registered Persephony application,
-	 * this is the URL that Persephony makes requests to when the call
-	 * connects. See the {@code callConnectUrl} in the Persephony Application
-	 * documentation.
-	 * @param statusCallbackUrl The URL to which Persephony will report call
-	 * status notifications. See the {@code statusCallbackUrl} in the
-	 * Persephony Application documentation.
-	 * @param callOptions Optional arguments that can be provided when creating
-	 * a call. See Persephony documentation for details.
-	 *
-	 * @return The {@link com.vailsys.persephony.api.call.Call} object returned by
-	 * Persephony that represents the call that was created.
-	 *
-	 * @see com.vailsys.persephony.api.call.CallOptions
-	 * @throws PersyException when the request fails or the JSON is invalid.
-	 */
-	public Call create(String to, String from, String callConnectUrl, String statusCallbackUrl, CallOptions callOptions) throws PersyException {
-		try {
-			return Call.fromJson(this.POST(this.path, new CreateCallRequest(to, from, callConnectUrl, statusCallbackUrl, callOptions).toJson()));
-		}
-		catch (JsonIOException jioe) {
-			throw new PersyJSONException(jioe);
-		}
-	}
-
-	/**
 	 * Retrieve a list of calls associated with the {@code actingAccountId}.
 	 * This wraps a HTTP GET request to the Persephony API's
 	 * /Accounts/$accountId/Calls endpoint. This will retrieve all calls for

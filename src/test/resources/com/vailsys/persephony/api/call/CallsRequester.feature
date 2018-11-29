@@ -11,13 +11,6 @@ Feature: CallsRequester
 		Then place a call from +13125551234 to +17735556789 using application AP1234567890123456789012345678901234567890
 		Then place a call from +13125551234 to +17735556789 using application AP1234567890123456789012345678901234567890 with options
 
-	Scenario: Place a new call using a callConnectUrl
-		Given a CallsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890
-		Then place a call from +13125551234 to +17735556789 using callConnectUrl
-		Then place a call from +13125551234 to +17735556789 using callConnectUrl with options
-		Then place a call from +13125551234 to +17735556789 using callConnectUrl and statusCallbackUrl
-		Then place a call from +13125551234 to +17735556789 using callConnectUrl and statusCallbackUrl with options
-
 	Scenario: Getting a list of calls
 		Given a CallsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890
 		Then get a list of calls
@@ -37,4 +30,4 @@ Feature: CallsRequester
 
 	Scenario: Place a new call with a requestId
 		Given a CallsRequester with the credentials AC1234567890123456789012345678901234567890 and 1234567890123456789012345678901234567890 and using the accountId AC1234567890123456789012345678901234567890
-		Then place a call from +13125551234 to +17735556789 using callConnectUrl with requestId RQ1234567890123456789012345678901234567890
+		Then place a call from +13125551234 to +17735556789 using application AP1234567890123456789012345678901234567890 with requestId RQ1234567890123456789012345678901234567890
