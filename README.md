@@ -13,7 +13,7 @@ To include the SDK in your build, follow the instructions on [Jitpack](https://j
 
 ## Testing your Installation
 
-Test the SDK is working by sending yourself a phone call.
+Test the SDK is working by sending yourself a text message.
 
 ```java
 public class Example {
@@ -26,18 +26,12 @@ public class Example {
     public static void main(String[] args) throws PersyException {
         PersyClient client = new PersyClient(accountId, authToken);
 
-        client.calls.create(To, From, "https://www.persephony.com/testApp/voice", (String)null);
+        client.messages.create(From, To, "Welcome to Persephony!");
     }
 }
 ```
 
-When you run this code you should get a phone call. On answering the call, you should hear a short message ("Thanks for using Persephony!"). This indicates that you've successfully setup your SDK.
-
-`https://www.persephony.com/testApp/voice` contains a small Persephony application that also uses the Persephony Java SDK. When a request is made to its `/voice` endpoint, it will respond with the following PerCL script, which produces the message you heard.
-
-```json
-[{"Say": {"text": "Thanks for using Persephony!"}}]
-```
+When you run this code you should get a text message.
 
 ### Running Unit Tests
 
