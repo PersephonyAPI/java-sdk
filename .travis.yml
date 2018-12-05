@@ -18,3 +18,6 @@ script:
 after_script:
   - ./cc-test-reporter format-coverage -t cobertura build/reports/cobertura/coverage.xml # Convert build/reports/cobertura/coverage.xml into coverage/codeclimate.json
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi #Upload coverage/codeclimate.json
+notifications:
+  slack:
+    secure: ITR/HRCWK1livnC4XUSUocCFDdIhwGjr7b+0qQ4fEkytZadOQEHRRZq34mAlf8fCBHpkvOcTOOhBgtn9z/LYk/UZMOlZ/3aHPcCJ3gZWuvWGYe/5FgVFxNt3tn5aklATrv68vsJMyppNK/fIlhiXgyxILyFY7PMYBcxVCi4jY6J2BJI+5/UDDoO86ve6nZwtj3D4b1B7C6XLQNKacNK2266zjrHaLaEeYmoss8hsq73KdhSCWtaR26TV3vz8SONe+U0v+NMGnk+xim7nRaZO3IOSAX0GPaUvpOdAZYvxPR8zjS2rmgIMemKxr4xwqCmNbOh25nKAQjYTZ4PJ1d86K+yenmYt9w54oNPA7MjmTpr0F3wNxSU9yzqjcj7Hn3NniTn5o5DzTdgLzqKoxnJckxHm//Yto3cUeouk8fqGJmFF++zadnF1QLHaGe2TnotpiY92tJkuNl1q0OjBjIcD+ZS+p1YZzIlLqfCuxmxE+z5bl+gMtRXwvFTvdlrTG5AyEF7DDwDnVIcJATIE0jyvIGbDVVYyq9smPLLo0Yml35GFpPdqBF7Oxod9RWpVIdW/RFBT0m8U4COp42PWBuNuIr+uft0qOU+ZD0ZFwOl13JLK6ex2XJtSdxTALI4WeC5fYaEzCWuPhlsmC9g5EecC6NdOqoHNeB7yaeKSZi3k5Ow=
