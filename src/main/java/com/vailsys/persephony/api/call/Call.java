@@ -59,12 +59,18 @@ public class Call extends PersyCommon {
 	 * The time this call was started. 
 	 */
 	private Date startTime;
+	/**
+	 * The time this call was answered.
+	 */
+	private Date connectTime;
 	/** 
 	 * The time this call ended. 
 	 */
 	private Date endTime;
 	/** The duration of this call in seconds. */
-	private Integer durationSec;
+	private Integer duration;
+	/** The duration that this call was connected in seconds. */
+	private Integer connectDuration;
 	/** 
 	 * The direction (inbound, outbound, etc.) of this call.
 	 * @see com.vailsys.persephony.api.call.Direction
@@ -171,6 +177,14 @@ public class Call extends PersyCommon {
 		return this.startTime;
 	}
 	/**
+	 * Retrieve the time this call was answered from the object.
+	 *
+	 * @return The time this call was answered.
+	 */
+	public Date getConnectTime() {
+		return this.connectTime;
+	}
+	/**
 	 * Retrieve the end time for this call from the object.
 	 *
 	 * @return The end time for this call.
@@ -183,8 +197,16 @@ public class Call extends PersyCommon {
 	 *
 	 * @return The duration for this call in seconds.
 	 */
-	public Integer getDurationSec() {
-		return this.durationSec;
+	public Integer getDuration() {
+		return this.duration;
+	}
+	/**
+	 * Retrieve the connection duration, in seconds, for this call from the object.
+	 *
+	 * @return The connection duration for this call in seconds.
+	 */
+	public Integer getConnectDuration() {
+		return this.connectDuration;
 	}
 	/**
 	 * Retrieve the direction of this call from the object.
@@ -285,6 +307,18 @@ public class Call extends PersyCommon {
 		} else {
 			result = result && that.status == null;
 		}
+
+		if(this.startTime != null) {
+			result = result && this.startTime.equals(that.startTime);
+		} else {
+			result = result && that.startTime == null;
+		}
+
+		if(this.connectTime != null) {
+			result = result && this.connectTime.equals(that.connectTime);
+		} else {
+			result = result && that.connectTime == null;
+		}
 		
 		if(this.endTime != null) {
 			result = result && this.endTime.equals(that.endTime);
@@ -292,10 +326,16 @@ public class Call extends PersyCommon {
 			result = result && that.endTime == null;
 		}
 		
-		if(this.durationSec != null) {
-			result = result && this.durationSec.equals(that.durationSec);
+		if(this.duration != null) {
+			result = result && this.duration.equals(that.duration);
 		} else {
-			result = result && that.durationSec == null;
+			result = result && that.duration == null;
+		}
+
+		if(this.connectDuration != null) {
+			result = result && this.connectDuration.equals(that.connectDuration);
+		} else {
+			result = result && that.connectDuration == null;
 		}
 		
 		if(this.answeredBy != null) {
